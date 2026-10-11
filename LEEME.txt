@@ -12,7 +12,7 @@ Como subirla
   en algunos navegadores: pruebala desde el enlace publicado.
 
 Datos que se editan (arriba del script en index.html, bloque CFG)
-  fecha, lugar, direccion, mapa, fotos, whatsapp, sheetUrl
+  fecha, lugar, direccion, mapa, fotos, whatsapp (ya puesto: 526381108993), sheetUrl (futuro Google Sheets)
 
 Volumen y fundido
   En index.html busca:  VOL=.5  (volumen maximo, 0 a 1)  y  FADE=7  (segundos del fundido).

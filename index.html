@@ -202,7 +202,7 @@ const CFG={nombre:"Isabella Pérez Pérez",corto:"Isabella",
   mapa:"",       // enlace de Google Maps del lugar
   fotos:[],      // hasta 3 fotos para la galería (data:image/...)
   sheetUrl:"",   // URL del Apps Script que escribe en tu Google Sheet
-  whatsapp:""    // ej. "5216461234567"
+  whatsapp:"526381108993"    // ej. "5216461234567"
 };
 const $=s=>document.querySelector(s);
 document.querySelectorAll('[data-cfg]').forEach(e=>e.textContent=CFG[e.dataset.cfg]);
@@ -215,11 +215,13 @@ if(CFG.mapa){const m=$('#map');m.href=CFG.mapa;m.style.display='block'}
 CFG.fotos.slice(0,3).forEach((u,k)=>{$('#gal').children[k].style.backgroundImage=`url(${u})`});
 let asiste='';
 document.querySelectorAll('.yn button').forEach(b=>b.onclick=()=>{asiste=b.dataset.v;document.querySelectorAll('.yn button').forEach(x=>x.classList.toggle('on',x===b))});
-$('#send').onclick=async()=>{const fam=$('#fam').value.trim(),n=+$('#num').value;
+const waUrl=(fam,v,n)=>'https://wa.me/'+CFG.whatsapp+'?text='+encodeURIComponent('¡Hola! Confirmo mi respuesta para los XV años de '+CFG.corto+' ✨'+String.fromCharCode(10,10)+'Invitado: '+fam+String.fromCharCode(10)+'Respuesta: '+v+(v.startsWith('Sí')?String.fromCharCode(10)+'Boletos: '+n:''));
+$('#send').onclick=()=>{const fam=$('#fam').value.trim(),n=+$('#num').value;
  if(!fam||!asiste){$('#rsvpNote').textContent='Escribe tu nombre y elige una opción.';return}
- $('#send').disabled=true;$('#rsvpNote').textContent='';
- if(CFG.sheetUrl){try{await fetch(CFG.sheetUrl,{method:'POST',mode:'no-cors',body:JSON.stringify({invitado:fam,asistencia:asiste,boletos:n,fecha:new Date().toLocaleString('es-MX')})})}catch(e){}}
- $('#send').disabled=false;showDone(fam,asiste,n)};
+ $('#rsvpNote').textContent='';
+ if(CFG.sheetUrl){try{fetch(CFG.sheetUrl,{method:'POST',mode:'no-cors',keepalive:true,body:JSON.stringify({invitado:fam,asistencia:asiste,boletos:n,fecha:new Date().toLocaleString('es-MX')})}).catch(()=>{})}catch(e){}}
+ if(CFG.whatsapp){try{window.open(waUrl(fam,asiste,n),'_blank')}catch(e){}}
+ showDone(fam,asiste,n)};
 /* ===== MÚSICA (archivo local) Y EFECTOS DE PAPEL ===== */
 let AC=null,master=null,muted=false,el=null,mg=null,musicOn=false;
 const WA=/^https?:/.test(location.protocol),VOL=.5,FADE=7;
@@ -274,12 +276,12 @@ function magicSeal(){const r=$('#seal').getBoundingClientRect();burst(r.left+r.w
 function magicSettle(){const[x,y]=mid();burst(x,y,46,Math.min(innerWidth,420)*.6);burst(x,y,26,Math.min(innerWidth,420)*.8,.35);shower(3.4)}
 function magicSend(){const[x,y]=mid();burst(x,y,44,Math.min(innerWidth,420)*.6);burst(x,y,30,Math.min(innerWidth,420)*.8,.3);shower(2.8);
  try{if(AC&&!muted){const n=AC.currentTime;sparkle(n,8,.13);[72,76,79,84,88].forEach((m,k)=>bell(m,n+.5+k*.1,.12,1.8))}}catch(e){}}
-function showDone(fam,v,n){const yes=v.startsWith('Sí');
- $('#dTag').textContent=yes?'¡Confirmado!':'Respuesta recibida';
- $('#dMsg').textContent=yes?'Tu lugar en el cuento está reservado. Te esperamos con mucha ilusión.':'Lamentamos que no puedas acompañarnos. ¡Gracias por avisarnos!';
+function showDone(fam,v,n){const yes=v.startsWith('Sí'),wa=!!CFG.whatsapp;
+ $('#dTag').textContent=wa?'¡Casi listo!':(yes?'¡Confirmado!':'Respuesta recibida');
+ $('#dMsg').textContent=wa?'Se abrió WhatsApp con tu respuesta. Solo toca «Enviar» para que le llegue a la familia.':(yes?'Tu lugar en el cuento está reservado. Te esperamos con mucha ilusión.':'Lamentamos que no puedas acompañarnos. ¡Gracias por avisarnos!');
  $('#dWho').textContent=fam;$('#dWhat').textContent=yes?'Sí asistiré · '+n+' boleto'+(n>1?'s':''):'No podré asistir';
  $('#dWhen').textContent=CFG.fecha?$('#tFecha').textContent+(CFG.lugar?' · '+CFG.lugar:''):'';
- const w=$('#doneWa');if(CFG.whatsapp){w.hidden=false;w.href='https://wa.me/'+CFG.whatsapp+'?text='+encodeURIComponent('¡Hola! Somos '+fam+'. '+v+' a los XV años de '+CFG.corto+(yes?' ('+n+' boleto'+(n>1?'s':'')+')':'')+' ✨')}
+ const w=$('#doneWa');if(wa){w.hidden=false;w.textContent='Abrir WhatsApp otra vez';w.href=waUrl(fam,v,n)}
  $('#done').classList.add('on');magicSend()}
 $('#redo').onclick=()=>$('#done').classList.remove('on');
 /* abrir sobre y pasar páginas */
