@@ -1,0 +1,22 @@
+INVITACION XV - ISABELLA
+
+Contenido
+  index.html         la invitacion (todo en un solo archivo)
+  assets/musica.mp3  la cancion (ya con el volumen bajado)
+
+Como subirla
+  1. Sube las dos cosas al repositorio manteniendo la carpeta "assets".
+  2. Activa GitHub Pages (Settings > Pages > Deploy from branch > main / root).
+  3. Abre el enlace https:// que te da GitHub.
+  La musica NO suena si abres index.html con doble clic desde la computadora
+  en algunos navegadores: pruebala desde el enlace publicado.
+
+Datos que se editan (arriba del script en index.html, bloque CFG)
+  fecha, lugar, direccion, mapa, fotos, whatsapp, sheetUrl
+
+Volumen y fundido
+  En index.html busca:  VOL=.5  (volumen maximo, 0 a 1)  y  FADE=7  (segundos del fundido).
+
+Nota: los navegadores bloquean el autoplay con sonido. La musica intenta
+empezar sola al cargar con fundido; si el navegador no lo permite, empieza
+con el primer toque en la pantalla (el del sello).
