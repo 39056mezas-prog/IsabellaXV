@@ -1,22 +1,21 @@
 INVITACION XV - ISABELLA
 
-Contenido
-  index.html         la invitacion (todo en un solo archivo)
-  assets/musica.mp3  la cancion (ya con el volumen bajado)
+Archivos (todos en la raiz, sin carpetas):
+  index.html   la invitacion
+  musica.mp3   la cancion (volumen ya bajado)
 
-Como subirla
-  1. Sube las dos cosas al repositorio manteniendo la carpeta "assets".
-  2. Activa GitHub Pages (Settings > Pages > Deploy from branch > main / root).
-  3. Abre el enlace https:// que te da GitHub.
-  La musica NO suena si abres index.html con doble clic desde la computadora
-  en algunos navegadores: pruebala desde el enlace publicado.
+Subir al repositorio: sube los dos archivos tal cual al branch main y activa
+GitHub Pages (Settings > Pages > Deploy from branch > main / root).
+Tu enlace sera https://TU-USUARIO.github.io/NOMBRE-DEL-REPO/
+Prueba la musica desde ese enlace (no abriendo el archivo con doble clic).
 
-Datos que se editan (arriba del script en index.html, bloque CFG)
-  fecha, lugar, direccion, mapa, fotos, whatsapp (ya puesto: 526381108993), sheetUrl (futuro Google Sheets)
+Las confirmaciones llegan por WhatsApp al 638 110 8993 (cuando el invitado toca
+"Enviar" en WhatsApp). Mas adelante se puede conectar un Google Sheets: en el
+bloque CFG hay un campo "sheetUrl" listo para eso.
 
-Volumen y fundido
-  En index.html busca:  VOL=.5  (volumen maximo, 0 a 1)  y  FADE=7  (segundos del fundido).
+Datos que se editan (bloque CFG al inicio del script en index.html):
+  fecha, padres, padrinos, chambelan, misa y recepcion (hora, lugar, direccion, mapa),
+  whatsapp. Los botones "Como llegar" se arman solos con la direccion; si quieres un
+  enlace exacto de Google Maps, pegalo en "mapa" de misa o recepcion.
 
-Nota: los navegadores bloquean el autoplay con sonido. La musica intenta
-empezar sola al cargar con fundido; si el navegador no lo permite, empieza
-con el primer toque en la pantalla (el del sello).
+Volumen y fundido de la musica: busca VOL=.5 (0 a 1) y FADE=7 (segundos).
