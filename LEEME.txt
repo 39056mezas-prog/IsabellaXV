@@ -3,8 +3,9 @@ INVITACION XV - ISABELLA
 Archivos (todos en la raiz, sin carpetas):
   index.html   la invitacion
   musica.mp3   la cancion (volumen ya bajado)
+  preview.jpg  la imagen que aparece al compartir el enlace (WhatsApp, Facebook, etc.)
 
-Subir al repositorio: sube los dos archivos tal cual al branch main y activa
+Subir al repositorio: sube los tres archivos tal cual al branch main y activa
 GitHub Pages (Settings > Pages > Deploy from branch > main / root).
 Tu enlace sera https://TU-USUARIO.github.io/NOMBRE-DEL-REPO/
 Prueba la musica desde ese enlace (no abriendo el archivo con doble clic).
@@ -19,3 +20,11 @@ Datos que se editan (bloque CFG al inicio del script en index.html):
   enlace exacto de Google Maps, pegalo en "mapa" de misa o recepcion.
 
 Volumen y fundido de la musica: busca VOL=.5 (0 a 1) y FADE=7 (segundos).
+
+VISTA PREVIA AL COMPARTIR EL ENLACE
+En index.html hay etiquetas og:image y twitter:image que apuntan a preview.jpg.
+WhatsApp y Facebook piden la direccion COMPLETA de la imagen. Cuando tengas tu enlace
+final, cambia en esas dos etiquetas content="preview.jpg" por, por ejemplo,
+content="https://TU-USUARIO.github.io/NOMBRE-DEL-REPO/preview.jpg"
+(o mandame el enlace y lo dejo listo). Despues de subirlo, si WhatsApp sigue mostrando
+la vista anterior, es cache: prueba con el enlace + ?v=2 al final.
