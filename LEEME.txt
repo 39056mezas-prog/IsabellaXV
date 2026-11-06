@@ -10,21 +10,55 @@ GitHub Pages (Settings > Pages > Deploy from branch > main / root).
 Tu enlace sera https://TU-USUARIO.github.io/NOMBRE-DEL-REPO/
 Prueba la musica desde ese enlace (no abriendo el archivo con doble clic).
 
-Las confirmaciones llegan por WhatsApp al 638 110 8993 (cuando el invitado toca
-"Enviar" en WhatsApp). Mas adelante se puede conectar un Google Sheets: en el
-bloque CFG hay un campo "sheetUrl" listo para eso.
+ANTES DE ENVIAR EL ENLACE: VISTA PREVIA EN WHATSAPP (obligatorio)
+WhatsApp y Facebook necesitan la direccion COMPLETA de la imagen.
+En index.html busca este texto (aparece 3 veces, al inicio del archivo):
+    https://TU-USUARIO.github.io/NOMBRE-DEL-REPO/
+y reemplazalo por tu enlace real, por ejemplo:
+    https://maria.github.io/xv-isabella/
+Sube el archivo de nuevo. Si WhatsApp sigue mostrando la vista anterior, es cache:
+prueba con el enlace + ?v=2 al final. (O mandame el enlace y lo dejo listo.)
+
+Confirmaciones: se guardan en tu Google Sheet (campo "sheetUrl") y el invitado
+tambien envia un WhatsApp al 638 110 8993 cuando toca "Enviar". La invitacion
+le recuerda que falta ese paso. La columna "boletos" del Sheet ahora es el numero
+de PERSONAS que eligio el invitado (1 a 5).
 
 Datos que se editan (bloque CFG al inicio del script en index.html):
-  fecha, padres, padrinos, chambelan, misa y recepcion (hora, lugar, direccion, mapa),
+  fecha, fin (cierre del evento), confirmar (fecha limite para confirmar),
+  padres, padrinos, chambelan, misa y recepcion (hora, lugar, direccion, mapa),
   whatsapp. Los botones "Como llegar" se arman solos con la direccion; si quieres un
   enlace exacto de Google Maps, pegalo en "mapa" de misa o recepcion.
+  "confirmar" esta en 2027-03-01: cambiala si quieres otra fecha, o dejala "" para
+  no mostrar fecha limite.
 
-Volumen y fundido de la musica: busca VOL=.5 (0 a 1) y FADE=7 (segundos).
+Musica: empieza con fundido al abrir el sobre (nunca suena sola al cargar).
+El boton "Musica" (arriba a la derecha) la apaga o la vuelve a prender.
+Volumen y fundido: busca VOL=.5 (0 a 1) y FADE=7 (segundos).
 
-VISTA PREVIA AL COMPARTIR EL ENLACE
-En index.html hay etiquetas og:image y twitter:image que apuntan a preview.jpg.
-WhatsApp y Facebook piden la direccion COMPLETA de la imagen. Cuando tengas tu enlace
-final, cambia en esas dos etiquetas content="preview.jpg" por, por ejemplo,
-content="https://TU-USUARIO.github.io/NOMBRE-DEL-REPO/preview.jpg"
-(o mandame el enlace y lo dejo listo). Despues de subirlo, si WhatsApp sigue mostrando
-la vista anterior, es cache: prueba con el enlace + ?v=2 al final.
+Sobre: la primera vez aparece el sobre con un boton grande "Abrir invitacion"
+(tambien se puede tocar el sello). Abre en menos de un segundo y muestra la
+invitacion completa en UNA sola pagina que se lee bajando con el dedo: no hay
+que deslizar hojas. Si el invitado vuelve a entrar, pasa directo a la invitacion
+y la musica empieza con su primer toque. Para ver el sobre otra vez agrega ?sobre
+al final del enlace.
+Para volver a guardar la carta en el sobre: boton "Sobre" (arriba) o
+"Guardar en el sobre" (al final de la invitacion).
+
+Fondo magico: estrellitas que titilan, polvo de hada, una estrella fugaz de vez en
+cuando y la carroza flotando con su estela de destellos. Si el telefono tiene
+activado "reducir movimiento", el fondo se queda quieto.
+
+Colores (bloque :root al inicio del <style>):
+  --powder #B8D4E8, --baby #D3E7F6, --ivory #F5F0E6, --gold #C29B52,
+  --ink #26364A (azul medianoche, solo texto).
+  Botones principales: saten azul como los moños del vestido, con costura de
+  perlas blancas y filo de oro (--satin-hi #D4E8FA, --satin #93BEE8, --satin-lo #7FAEDF).
+  Botones secundarios: cartulina marfil, el mismo papel del sobre, con costura dorada.
+  --gold-ink #7A5520 es el oro oscuro, solo para TEXTO sobre fondos claros.
+
+Fotos: la portada es la foto 9 (HERO). Las fotos de "Asi llega a sus XV" se eligen
+en GALERIA=[3,4,1,11,6,10] al inicio del script (numeros de foto del 0 al 11).
+
+Despues del evento la invitacion cambia sola: la cuenta regresiva dice
+"Gracias por acompañarnos" y se cierra el formulario de confirmacion.
