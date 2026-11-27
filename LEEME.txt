@@ -1,12 +1,21 @@
 INVITACION XV - ISABELLA
+========================
+VERSION A: una sola hoja que se baja con el dedo.
 
-Archivos (todos en la raiz, sin carpetas):
-  index.html   la invitacion
-  musica.mp3   la cancion (volumen ya bajado)
-  preview.jpg  la imagen que aparece al compartir el enlace (WhatsApp, Facebook, etc.)
+QUE ARCHIVOS SUBIR
+------------------
+Sube TODO al branch main, respetando la carpeta img:
 
-Subir al repositorio: sube los tres archivos tal cual al branch main y activa
-GitHub Pages (Settings > Pages > Deploy from branch > main / root).
+  index.html          la invitacion (version A: una sola hoja)
+  invitados.js        la lista de familias y sus pases  <-- AQUI EDITAS LOS PASES
+  pases.html          la pagina donde ves el enlace de cada familia
+  musica.mp3          la cancion
+  preview.jpg         la imagen que sale al compartir el enlace (WhatsApp, Facebook)
+  hotel-isabella.jpg  la tarjeta del hotel para mandar por WhatsApp
+  hotel-tarjeta.html  de donde sale esa tarjeta (por si quieres cambiarle algo)
+  img/                carpeta con el fondo en alta resolucion (8 archivos)
+
+Activa GitHub Pages (Settings > Pages > Deploy from branch > main / root).
 Tu enlace sera https://TU-USUARIO.github.io/NOMBRE-DEL-REPO/
 Prueba la musica desde ese enlace (no abriendo el archivo con doble clic).
 
@@ -14,51 +23,157 @@ ANTES DE ENVIAR EL ENLACE: VISTA PREVIA EN WHATSAPP (obligatorio)
 WhatsApp y Facebook necesitan la direccion COMPLETA de la imagen.
 En index.html busca este texto (aparece 3 veces, al inicio del archivo):
     https://TU-USUARIO.github.io/NOMBRE-DEL-REPO/
-y reemplazalo por tu enlace real, por ejemplo:
-    https://maria.github.io/xv-isabella/
-Sube el archivo de nuevo. Si WhatsApp sigue mostrando la vista anterior, es cache:
-prueba con el enlace + ?v=2 al final. (O mandame el enlace y lo dejo listo.)
+y reemplazalo por tu enlace real. Sube el archivo de nuevo. Si WhatsApp sigue
+mostrando la vista anterior, es cache: prueba con el enlace + ?v=2 al final.
+
+
+TODO EN UNA SOLA HOJA (version A)
+---------------------------------
+La invitacion es una sola carta larga: se abre el sobre y se baja con el dedo
+de principio a fin, en este orden:
+
+  portada -> guarda la fecha -> donde y a que hora -> hotel -> programa
+  -> familia -> fotos -> confirmar -> cierre y regalo
+
+Los botones de la portada ("Confirmar asistencia" y "Como llegar") te llevan
+de un salto a su parte.
+
+LA VISTA SE DETIENE EN CADA PARTE
+El dedo sigue mandando: se desliza igual de libre que antes, pero al soltar
+la carta se acomoda sola en la parte que sigue, con su adorno y su titulo
+arriba. Asi nadie se brinca el hotel o el programa sin verlos. Dentro de una
+parte larga (hotel, fotos) se baja normal, sin que nada jale de regreso.
+Cada parte ademas aparece con un suspiro al llegar.
+
+Si un invitado tiene activado "reducir movimiento" en su telefono, las paradas
+y las apariciones se apagan solas y queda el scroll libre de siempre.
+
+Esto se controla con una sola linea del <style> (busca "LA VISTA SE DETIENE"):
+  html{scroll-snap-type:y proximity}
+  - proximity = se acomoda si sueltas cerca de una parte (es lo que trae).
+  - mandatory = obliga a parar en cada parte, mas estricto.
+  - none      = scroll libre, como estaba antes.
+Y en la linea de abajo, scroll-snap-stop:always es lo que evita que un
+deslizon rapido se brinque partes; cambialo a normal si quieres que se pueda
+pasar de largo.
+Para quitar una parte: borra su <section class="part" id="..."> completa.
+
+Si prefieres que la invitacion pase de hoja en hoja con un boton, usa el otro
+archivo que te mandamos: la version B.
+
+
+LOS PASES DE CADA FAMILIA
+-------------------------
+Cada familia entra con SU PROPIO ENLACE y solo puede confirmar hasta el numero
+de pases que le diste. Asi nadie invita gente de mas.
+
+1. Abre invitados.js y pon a tus familias. Cada renglon lleva:
+      c = el codigo que va en el enlace (sin acentos ni espacios)
+      n = el nombre que vera la familia
+      p = cuantos pases le das
+      t = su WhatsApp con clave de pais (opcional, para mandarselo de un toque)
+
+   Ejemplo:
+      { c: "garza", n: "Familia Garza Rendon", p: 4, t: "526121234567" },
+
+2. Sube invitados.js y abre pases.html en tu telefono o computadora.
+   Ahi sale, familia por familia: su enlace, un boton para copiarlo, otro para
+   copiar el mensaje completo y (si pusiste su WhatsApp) uno para mandarselo.
+   Arriba puedes cambiar el mensaje que acompana al enlace.
+
+3. El enlace de cada familia se ve asi:
+      https://TU-USUARIO.github.io/NOMBRE-DEL-REPO/?i=garza
+
+Lo que ve la familia: su nombre en la portada con sus pases, el nombre ya
+escrito en el formulario (no lo puede cambiar) y solo los botones de 1 a 4
+personas. En tu Google Sheet llegan ademas dos columnas nuevas: "pases"
+(cuantos le diste) y "codigo" (cual familia es). El mensaje de WhatsApp que
+te manda el invitado tambien trae esos datos.
+
+Si alguien entra al enlace general (sin ?i=), la invitacion funciona como
+antes: escribe su nombre y elige hasta CFG.maxPersonas personas.
+Si dejas invitados.js vacio, todos entran asi.
+
+
+LA HOJA DEL HOTEL
+-----------------
+Va despues de "Donde y a que hora". Los datos se editan en el bloque "hotel" dentro de CFG, al inicio del
+script de index.html: nombre, dir, tel, codigo, tarifa y la lista "detalles".
+Trae botones para llamar, copiar el codigo y abrir el mapa.
+Si ya no quieres esa parte, borra el bloque "hotel" completo de CFG: se
+quita sola.
+
+La imagen hotel-isabella.jpg es la misma informacion hecha tarjeta, con los
+colores y las letras de la invitacion, lista para mandar por WhatsApp.
+Sale de hotel-tarjeta.html: si cambias algo ahi, abre ese archivo en el
+navegador y toma captura de pantalla de la tarjeta.
+
+
+EL REGALO
+---------
+Hasta el final: "Se agradece su regalo en efectivo."
+Para cambiar ese texto busca la palabra "regalo" en index.html, en el bloque
+<div class="regalo">.
+
+
+LAS FOTOS SE VEN EN GRANDE
+--------------------------
+En la parte de fotos se tocan las fotos y se abren a pantalla completa. Ahi se pasa de
+una a otra deslizando el dedo o con las flechas, y se sale tocando afuera de la
+foto, la X de arriba o la tecla Esc. La foto de la portada tambien se puede
+tocar.
+
+Las fotos se eligen en GALERIA=[3,4,1,11,6,10] al inicio del script (numeros de
+foto del 0 al 11). La portada es HERO=9.
+
+
+EL FONDO EN ALTA RESOLUCION
+---------------------------
+El cielo con el castillo y la carroza ahora viven en la carpeta img/ en varios
+tamanos. El telefono baja el chico y una pantalla grande o una TV 4K baja el
+grande, asi que ya no se ve pixeleado. Si subes el index.html SIN la carpeta
+img, el fondo se ve como un degradado azul limpio (no se rompe, pero se pierden
+el castillo y la carroza).
+
+
+DATOS QUE SE EDITAN (bloque CFG al inicio del script en index.html)
+------------------------------------------------------------------
+  fecha, fin (cierre del evento), confirmar (fecha limite para confirmar),
+  padres, padrinos, chambelan, misa y recepcion (hora, lugar, direccion, mapa),
+  hotel, whatsapp, maxPersonas.
+  Los botones "Como llegar" se arman solos con la direccion; si quieres un
+  enlace exacto de Google Maps, pegalo en "mapa".
+  "confirmar" esta en 2027-03-01: cambiala si quieres otra fecha, o dejala ""
+  para no mostrar fecha limite.
 
 Confirmaciones: se guardan en tu Google Sheet (campo "sheetUrl") y el invitado
 tambien envia un WhatsApp al 638 110 8993 cuando toca "Enviar". La invitacion
-le recuerda que falta ese paso. La columna "boletos" del Sheet ahora es el numero
-de PERSONAS que eligio el invitado (1 a 5).
-
-Datos que se editan (bloque CFG al inicio del script en index.html):
-  fecha, fin (cierre del evento), confirmar (fecha limite para confirmar),
-  padres, padrinos, chambelan, misa y recepcion (hora, lugar, direccion, mapa),
-  whatsapp. Los botones "Como llegar" se arman solos con la direccion; si quieres un
-  enlace exacto de Google Maps, pegalo en "mapa" de misa o recepcion.
-  "confirmar" esta en 2027-03-01: cambiala si quieres otra fecha, o dejala "" para
-  no mostrar fecha limite.
+le recuerda que falta ese paso.
 
 Musica: empieza con fundido al abrir el sobre (nunca suena sola al cargar).
 El boton "Musica" (arriba a la derecha) la apaga o la vuelve a prender.
 Volumen y fundido: busca VOL=.5 (0 a 1) y FADE=7 (segundos).
 
 Sobre: la primera vez aparece el sobre con un boton grande "Abrir invitacion"
-(tambien se puede tocar el sello). Abre en menos de un segundo y muestra la
-invitacion completa en UNA sola pagina que se lee bajando con el dedo: no hay
-que deslizar hojas. Si el invitado vuelve a entrar, pasa directo a la invitacion
-y la musica empieza con su primer toque. Para ver el sobre otra vez agrega ?sobre
-al final del enlace.
+(tambien se puede tocar el sello). Si el invitado vuelve a entrar, pasa directo
+a la invitacion. Para ver el sobre otra vez agrega ?sobre al final del enlace
+(y si tiene pases: ?i=garza&sobre).
 Para volver a guardar la carta en el sobre: boton "Sobre" (arriba) o
 "Guardar en el sobre" (al final de la invitacion).
 
-Fondo magico: estrellitas que titilan, polvo de hada, una estrella fugaz de vez en
-cuando y la carroza flotando con su estela de destellos. Si el telefono tiene
-activado "reducir movimiento", el fondo se queda quieto.
+Fondo magico: estrellitas que titilan, polvo de hada, una estrella fugaz de vez
+en cuando y la carroza flotando con su estela. Si el telefono tiene activado
+"reducir movimiento", el fondo se queda quieto.
 
 Colores (bloque :root al inicio del <style>):
   --powder #B8D4E8, --baby #D3E7F6, --ivory #F5F0E6, --gold #C29B52,
   --ink #26364A (azul medianoche, solo texto).
-  Botones principales: saten azul como los moños del vestido, con costura de
-  perlas blancas y filo de oro (--satin-hi #D4E8FA, --satin #93BEE8, --satin-lo #7FAEDF).
-  Botones secundarios: cartulina marfil, el mismo papel del sobre, con costura dorada.
+  Botones principales: saten azul como los monos del vestido, con costura de
+  perlas blancas y filo de oro (--satin-hi #D4E8FA, --satin #93BEE8,
+  --satin-lo #7FAEDF).
+  Botones secundarios: cartulina marfil, el mismo papel del sobre, con costura
+  dorada.
   --gold-ink #7A5520 es el oro oscuro, solo para TEXTO sobre fondos claros.
 
-Fotos: la portada es la foto 9 (HERO). Las fotos de "Asi llega a sus XV" se eligen
-en GALERIA=[3,4,1,11,6,10] al inicio del script (numeros de foto del 0 al 11).
-
 Despues del evento la invitacion cambia sola: la cuenta regresiva dice
-"Gracias por acompañarnos" y se cierra el formulario de confirmacion.
+"Gracias por acompanarnos" y se cierra el formulario de confirmacion.

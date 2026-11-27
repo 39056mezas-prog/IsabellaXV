@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Pases por familia · XV de Isabella</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{--powder:#B8D4E8;--baby:#D3E7F6;--ivory:#F5F0E6;--cream:#FAF7F0;--gold:#C29B52;--gold-lt:#E2CE98;--ink:#26364A;--gold-ink:#7A5520;--ink-2:#46586D;--err:#9C3B2A;
+--satin-hi:#D4E8FA;--satin:#93BEE8;--satin-lo:#7FAEDF;
+--script:'Pinyon Script','Snell Roundhand',cursive;--serif:'Cormorant Garamond',Georgia,serif}
+*,*::before,*::after{box-sizing:border-box;margin:0}
+body{min-height:100svh;padding:28px 14px 60px;font:500 19px/1.45 var(--serif);color:var(--ink);background:linear-gradient(180deg,#9AC0DC,#B5D2E8 16%,#E4EFF4 62%,#F2F7FA)}
+.wrap{width:min(100%,780px);margin:0 auto}
+header{text-align:center;margin-bottom:22px}
+h1{font:400 clamp(42px,10vw,62px)/1.05 var(--script);color:var(--gold-ink);font-weight:400}
+header p{margin-top:4px;color:var(--ink-2);font-style:italic}
+.card{margin-top:16px;padding:20px 18px;border:2px solid var(--gold);border-radius:24px;background:linear-gradient(180deg,#FFFCF6,#FBF7EF 55%,#F3F8FD);box-shadow:0 1.2em 2.2em -1.2em rgba(38,54,74,.45)}
+.card::after{content:"";display:block}
+label{display:block;margin-bottom:6px;font-weight:700}
+small.hint{display:block;margin-top:6px;color:var(--ink-2);font-style:italic;font-size:16px}
+input,textarea{width:100%;padding:12px 14px;border:1.5px solid var(--gold);border-radius:14px;background:#fff;color:var(--ink);font:600 17px/1.35 var(--serif)}
+textarea{min-height:120px;resize:vertical}
+.tot{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px}
+.tot div{padding:10px 18px;border:1.5px solid var(--gold);border-radius:16px;background:linear-gradient(180deg,#EEF6FD,var(--baby));text-align:center;min-width:120px}
+.tot b{display:block;font-size:30px;font-weight:700;line-height:1}
+.tot span{font-size:15px;font-weight:600;color:var(--ink-2)}
+.fam{margin-top:14px;padding:16px 16px 14px;border:1.5px dashed var(--gold);border-radius:20px;background:linear-gradient(180deg,#FFFDF9,#FDF8EE);box-shadow:inset 0 0 0 5px #fff,inset 0 0 0 6px rgba(194,155,82,.3)}
+.fam h2{font:700 24px/1.2 var(--serif);font-weight:700}
+.fam .p{font:400 26px/1 var(--script);color:var(--gold-ink);margin-top:2px}
+.fam .url{display:block;margin-top:8px;padding:9px 12px;border-radius:12px;background:#fff;border:1px solid rgba(194,155,82,.5);font:600 15px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-all;color:var(--ink-2)}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+button.b,a.b{display:inline-flex;align-items:center;justify-content:center;gap:.4em;min-height:48px;padding:0 16px;border:1.5px solid var(--gold);border-radius:999px;font:700 17px/1 var(--serif);color:var(--ink);text-decoration:none;cursor:pointer;background:linear-gradient(180deg,#FFFDF9,#F6F1E6);box-shadow:inset 0 1px 0 #fff,0 .3em .6em -.4em rgba(38,54,74,.5)}
+button.b.go,a.b.go{background:linear-gradient(180deg,var(--satin-hi),var(--satin) 46%,var(--satin-lo))}
+button.b:active,a.b:active{transform:translateY(1px)}
+.ok{background:linear-gradient(180deg,#DFF3DC,#C6E8C0)!important}
+.err{margin-top:14px;padding:14px 16px;border:1.5px solid var(--err);border-radius:16px;background:#fff;color:var(--err);font-weight:700}
+.note{margin-top:22px;text-align:center;color:var(--ink-2);font-size:16px;font-style:italic}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <h1>Pases por familia</h1>
+ <p>Aquí sale el enlace de cada familia, ya listo para mandar.</p>
+</header>
+
+<div class="card">
+ <label for="base">Dirección de la invitación</label>
+ <input id="base" placeholder="https://tu-usuario.github.io/IsabellaXV/" autocomplete="off" spellcheck="false">
+ <small class="hint">Es el enlace donde subiste la invitación. Se guarda solo en este dispositivo.</small>
+</div>
+
+<div class="card">
+ <label for="msg">Mensaje que acompaña al enlace</label>
+ <textarea id="msg" spellcheck="true"></textarea>
+ <small class="hint">Puedes cambiarlo. {familia} se cambia por el nombre, {pases} por el número de pases y {enlace} por su enlace.</small>
+</div>
+
+<div class="tot" id="tot"></div>
+<div id="lista"></div>
+<p class="note">Para agregar o cambiar familias, edita el archivo <b>invitados.js</b> y vuelve a subirlo.</p>
+</div>
+
+<script src="invitados.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+const LISTA=Array.isArray(window.INVITADOS)?window.INVITADOS:[];
+const DEF='¡Hola, {familia}! 💙\n\nCon mucho cariño les compartimos la invitación a los XV años de Isabella.\n\nSu invitación es para {pases} personas.\n\n{enlace}\n\nAbran el enlace para ver la invitación y confirmarnos. ¡Nos encantará tenerlos ahí!';
+function baseGuess(){const u=new URL(location.href);u.search='';u.hash='';return u.href.replace(/pases\.html?$/i,'')}
+const get=(k,d)=>{try{return localStorage.getItem(k)||d}catch(e){return d}};
+const set=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+$('#base').value=get('xv-base',baseGuess());
+$('#msg').value=get('xv-msg',DEF);
+$('#base').addEventListener('input',()=>{set('xv-base',$('#base').value);render()});
+$('#msg').addEventListener('input',()=>{set('xv-msg',$('#msg').value);render()});
+
+function linkOf(c){let b=$('#base').value.trim();if(!b)b=baseGuess();if(!/\/$/.test(b)&&!/\.html?$/i.test(b))b+='/';return b+'?i='+encodeURIComponent(String(c).toLowerCase().trim())}
+function msgOf(f){return $('#msg').value.replace(/\{familia\}/g,f.n).replace(/\{pases\}/g,f.p).replace(/\{enlace\}/g,linkOf(f.c))}
+async function copy(txt,btn,txtOk){try{await navigator.clipboard.writeText(txt)}catch(e){const x=document.createElement('textarea');x.value=txt;document.body.appendChild(x);x.select();try{document.execCommand('copy')}catch(_){}x.remove()}
+ const o=btn.textContent;btn.textContent=txtOk;btn.classList.add('ok');clearTimeout(btn._t);btn._t=setTimeout(()=>{btn.textContent=o;btn.classList.remove('ok')},1900)}
+
+function render(){const L=$('#lista');L.innerHTML='';
+ const codes={},dup=[];
+ LISTA.forEach(f=>{const c=String(f.c||'').toLowerCase().trim();if(codes[c])dup.push(c);codes[c]=1});
+ const tp=LISTA.reduce((a,f)=>a+(parseInt(f.p,10)||0),0);
+ $('#tot').innerHTML='<div><b>'+LISTA.length+'</b><span>familias</span></div><div><b>'+tp+'</b><span>pases en total</span></div>';
+ if(!LISTA.length){L.innerHTML='<div class="err">La lista está vacía. Abre el archivo invitados.js y agrega a las familias.</div>';return}
+ if(dup.length)L.insertAdjacentHTML('beforeend','<div class="err">Hay códigos repetidos en invitados.js: '+dup.join(', ')+'. Cada familia necesita un código distinto.</div>');
+ LISTA.forEach(f=>{
+  const d=document.createElement('div');d.className='fam';
+  const h=document.createElement('h2');h.textContent=f.n||'(sin nombre)';
+  const p=document.createElement('div');p.className='p';const n=parseInt(f.p,10)||0;p.textContent=n===1?'1 pase':n+' pases';
+  const u=document.createElement('code');u.className='url';u.textContent=linkOf(f.c);
+  const r=document.createElement('div');r.className='row';
+  const b1=document.createElement('button');b1.className='b go';b1.type='button';b1.textContent='Copiar enlace';b1.onclick=()=>copy(linkOf(f.c),b1,'¡Copiado!');
+  const b2=document.createElement('button');b2.className='b';b2.type='button';b2.textContent='Copiar mensaje';b2.onclick=()=>copy(msgOf(f),b2,'¡Copiado!');
+  r.append(b1,b2);
+  const t=String(f.t||'').replace(/[^0-9]/g,'');
+  if(t){const a=document.createElement('a');a.className='b';a.target='_blank';a.rel='noopener';a.href='https://wa.me/'+t+'?text='+encodeURIComponent(msgOf(f));a.textContent='Enviar por WhatsApp';r.appendChild(a)}
+  const b3=document.createElement('a');b3.className='b';b3.target='_blank';b3.rel='noopener';b3.href=linkOf(f.c);b3.textContent='Ver cómo le llega';r.appendChild(b3);
+  d.append(h,p,u,r);L.appendChild(d)})}
+render();
+</script>
+</body>
+</html>
